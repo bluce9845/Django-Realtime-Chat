@@ -12,8 +12,27 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('frontpage')
+            return redirect('login')
     else:
         form = SignUpForm()
-        
+
     return render(request, 'core/signup.html', {'form':form})
+
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        # authenticated
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('frontpage')
+        else:
+            return redirect('login')
+    else:
+        return render(request, 'core/login.html', {})
+
+def logout_view(request):
+    logout(request)
+    return redirect('frontpage')
