@@ -121,3 +121,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CORS settings (pastikan kamu install django-cors-headers)
+CORS_ALLOW_ALL_ORIGINS = True  # Atau setup origins yang diizinkan
+
+# Atau jika CSRF adalah masalahnya:
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000']
